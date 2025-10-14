@@ -1,1 +1,22 @@
-<p>places.component works!</p>
+<h2>Lugares</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+    <th>Nombre</th>
+    <th>Categoría</th>
+    <th>Altitud</th>
+    <th>Accesible</th>
+    <th>Cuota</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let place of places">
+        <td>{{ place.name }}</td>
+        <td>{{ place.category }}</td>
+        <td>{{ place.elevationMeters }} m</td>
+        <td>{{ place.accessible ? 'Sí' : 'No' }}</td>
+        <td>${{ place.entryFee }}</td>
+        </tr>
+</tbody>
+</table>
