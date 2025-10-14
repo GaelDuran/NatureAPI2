@@ -1,4 +1,13 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" alt="logo" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<div class="app-shell">
+  <aside class="sidebar">
+    <h1>Nature API</h1>
+    <nav>
+      <a routerLink="/">Inicio</a>
+      <a routerLink="/places">Lugares</a>
+      <a routerLink="/trails">Senderos</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

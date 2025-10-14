@@ -12,6 +12,13 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+### Mapbox setup
+
+This app uses Mapbox GL for maps. Provide a public Mapbox token before running the app. Two options:
+
+- Edit `src/index.html` and set `window.__MAPBOX_TOKEN__ = 'YOUR_TOKEN'`.
+- Or set the token as part of your build pipeline and inject it into `index.html`.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
