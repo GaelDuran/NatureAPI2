@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-places',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './places.component.html',
   styleUrls: ['./places.component.scss']
 })
