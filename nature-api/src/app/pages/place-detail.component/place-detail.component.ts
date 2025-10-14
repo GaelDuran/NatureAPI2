@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
+import { Photo } from '../../core/models/photo.model';
 import * as mapboxgl from 'mapbox-gl';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
@@ -29,6 +30,22 @@ export class PlaceDetailComponent implements OnInit {
       this.place = data;
       this.loadMiniMap();
     });
+  }
+
+  photoSrc(photo: Photo): string {
+    const raw = photo?.url || '';
+    // If it's already absolute (http/https) return as-is
+    if (/^https?:\/\//i.test(raw)) return raw;
+
+    // If it starts with a leading slash, use the API origin (strip possible '/api' suffix)
+    let apiBase = (environment.API_URL || '').replace(/\/api\/?$/, '');
+    if (!apiBase) {
+      // fallback to current origin
+      apiBase = window.location.origin;
+    }
+
+    // Ensure single slash between base and path
+    return apiBase.replace(/\/$/, '') + '/' + raw.replace(/^\//, '');
   }
 
   loadMiniMap(): void {

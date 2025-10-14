@@ -13,7 +13,7 @@
 
   <h3>🖼️ Galería de fotos</h3>
   <div class="gallery">
-    <img *ngFor="let photo of place.photos" [src]="photo.url" [alt]="photo.description" />
+    <img *ngFor="let photo of place.photos" [src]="photoSrc(photo)" [alt]="photo.description" />
   </div>
 
   <h3>🏕️ Amenidades</h3>
