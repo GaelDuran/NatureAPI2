@@ -2,11 +2,12 @@
   <aside class="sidebar">
     <h1>Nature API</h1>
     <nav>
-      <a routerLink="/">Inicio</a>
-      <a routerLink="/places">Lugares</a>
-      <a routerLink="/trails">Senderos</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+      <a routerLink="/places" routerLinkActive="active">Lugares</a>
+      <a routerLink="/trails" routerLinkActive="active">Senderos</a>
     </nav>
   </aside>
+
   <main class="content">
     <router-outlet></router-outlet>
   </main>
