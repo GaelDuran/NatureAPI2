@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
 import * as mapboxgl from 'mapbox-gl';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-place-detail',
-  templateUrl: './place-detail.component.html',
-  styleUrls: ['./place-detail.component.css']
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './home.component.html',
+  styles: ['']
 })
 export class PlaceDetailComponent implements OnInit {
 

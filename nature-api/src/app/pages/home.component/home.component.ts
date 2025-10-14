@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
 import * as mapboxgl from 'mapbox-gl';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styles: ['']
 })
 export class HomeComponent implements OnInit {
 
@@ -21,11 +24,11 @@ export class HomeComponent implements OnInit {
   }
 
   loadMap(): void {
-    (mapboxgl as any).accessToken = 'TU_TOKEN_DE_MAPBOX_AQUI';
+    (mapboxgl as any).accessToken = "pk.eyJ1IjoianVhbmZyOTciLCJhIjoiY2x4cnhqZGZpMWUzdTJrb2Qxd2k5Z3huYSJ9.Kp99lB1snn3xzzi26jKy4w";
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [-102.5528, 23.6345], // Centro aproximado de México
+      center: [-102.5528, 23.6345],
       zoom: 5
     });
   }

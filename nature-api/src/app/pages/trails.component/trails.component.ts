@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TrailService } from '../../core/services/trail.service';
 import { Trail } from '../../core/models/trail.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-trails',
-  templateUrl: './trails.component.html',
-  styleUrls: ['./trails.component.css']
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './home.component.html',
+  styles: ['']
 })
 export class TrailsComponent implements OnInit {
 

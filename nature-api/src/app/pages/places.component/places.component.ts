@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-places',
-  templateUrl: './places.component.html',
-  styleUrls: ['./places.component.css']
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './home.component.html',
+  styles: ['']
 })
 export class PlacesComponent implements OnInit {
 
