@@ -4,13 +4,14 @@ import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
 import * as mapboxgl from 'mapbox-gl';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-place-detail',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styles: ['']
+  templateUrl: './place-detail.component.html',
+  styleUrls: ['./place-detail.component.scss']
 })
 export class PlaceDetailComponent implements OnInit {
 
@@ -31,12 +32,13 @@ export class PlaceDetailComponent implements OnInit {
   }
 
   loadMiniMap(): void {
-    (mapboxgl as any).accessToken = 'TU_TOKEN_DE_MAPBOX_AQUI';
+    // pass Mapbox access token via Map constructor options
     this.map = new mapboxgl.Map({
       container: 'mini-map',
       style: 'mapbox://styles/mapbox/outdoors-v12',
       center: [this.place.longitude, this.place.latitude],
-      zoom: 11
+      zoom: 11,
+      accessToken: environment.MAPBOX_TOKEN as any
     });
 
     new mapboxgl.Marker()

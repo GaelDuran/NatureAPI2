@@ -4,11 +4,11 @@ import { Place } from '../../core/models/place.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-places',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styles: ['']
+  templateUrl: './places.component.html',
+  styleUrls: ['./places.component.scss']
 })
 export class PlacesComponent implements OnInit {
 

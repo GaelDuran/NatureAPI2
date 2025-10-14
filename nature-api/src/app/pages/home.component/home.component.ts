@@ -1,35 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { PlaceService } from '../../core/services/place.service';
 import { Place } from '../../core/models/place.model';
 import * as mapboxgl from 'mapbox-gl';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styles: ['']
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
 
   places: Place[] = [];
   map!: mapboxgl.Map;
 
   constructor(private placeService: PlaceService) {}
 
-  ngOnInit(): void {
-    this.loadMap();
+  ngAfterViewInit(): void {
+    this.initMap();
     this.loadPlaces();
   }
 
-  loadMap(): void {
-    (mapboxgl as any).accessToken = "pk.eyJ1IjoianVhbmZyOTciLCJhIjoiY2x4cnhqZGZpMWUzdTJrb2Qxd2k5Z3huYSJ9.Kp99lB1snn3xzzi26jKy4w";
+  initMap(): void {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [-102.5528, 23.6345],
-      zoom: 5
+      zoom: 5,
+      accessToken: environment.MAPBOX_TOKEN as any
     });
   }
 
