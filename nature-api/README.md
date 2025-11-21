@@ -64,3 +64,22 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## CI / CD and Deployment (Frontend)
+
+This repository includes GitHub Actions workflows to build, containerize and deploy the Angular frontend.
+
+- **Build & Publish**: `.github/workflows/frontend-build-and-push.yml` — builds the Angular app (production), writes `src/environments/secret.env.ts` from GitHub secrets, builds the Docker image and pushes it to GitHub Container Registry (`ghcr.io/${{ github.repository_owner }}/nature-api`).
+- **Deploy to Render**: `.github/workflows/frontend-deploy-render.yml` — triggers a deploy on Render by calling Render's Deploys API. You need to create a Render Web Service and set the required secrets.
+
+Required repository secrets:
+- `PRODUCTION_API_URL` — public URL of your deployed .NET API (used at build time to compile into the app)
+- `MAPBOX_TOKEN` — Mapbox public token
+- `GITHUB_TOKEN` — provided by GitHub automatically (used to push to GHCR)
+- `RENDER_API_KEY` — Render API key (for triggering deploy)
+- `RENDER_SERVICE_ID` — Render service ID to trigger deploy
+
+Notes:
+- The workflow writes `nature-api/src/environments/secret.env.ts` at runtime in the runner. Ensure `PRODUCTION_API_URL` and `MAPBOX_TOKEN` are set in repository secrets before running the workflow on `main`.
+- If you prefer Docker Hub instead of GHCR, update the `frontend-build-and-push.yml` workflow to login/push to `docker.io` and provide Docker Hub credentials as secrets.
+
