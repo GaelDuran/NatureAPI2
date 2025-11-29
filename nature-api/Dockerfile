@@ -1,35 +1,28 @@
-# ============================
-# Etapa 1 · Build Angular
-# ============================
+# Etapa 1 – Build Angular
 FROM node:24-alpine AS build
 
 WORKDIR /app
 
-# Instalar dependencias
 COPY package*.json ./
 RUN npm install --force
 
 # Copiar todo el proyecto
 COPY . .
 
-# Generar archivo secret.env.ts DENTRO de src/environments/
+# Generar secret.env.ts (asegúrate de que setup-env.js existe)
 RUN node setup-env.js
 
-# Compilar Angular (Angular 17 usa esta ruta)
+# Build de producción Angular
 RUN npm run build
 
-
-# ============================
-# Etapa 2 · Servir con Nginx
-# ============================
+# Etapa 2 – Nginx
 FROM nginx:alpine
 
-# Copiar archivos generados por Angular
-COPY --from=build /nature/api/dist/nature/browser /usr/share/nginx/html
+# Copiar build REAL de Angular (Angular 17+)
+COPY --from=build /app/dist/nature-api/browser /usr/share/nginx/html
 
-# Copiar configuración personalizada de Nginx
+# Copiar nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
