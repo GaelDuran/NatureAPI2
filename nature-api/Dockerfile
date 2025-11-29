@@ -7,11 +7,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --force
 
-# Copia todo el proyecto
+# Copiar proyecto completo
 COPY . .
 
-# Generar archivo secret.env.ts con las variables del contenedor
-# Este archivo se creará usando setup-env.js (que debes tener en tu repo)
+# Crear archivo secret.env.ts dentro de src/environments/
 RUN node setup-env.js
 
 # Build de producción Angular
@@ -20,8 +19,8 @@ RUN npm run build
 # Etapa 2 – Servir con Nginx
 FROM nginx:alpine
 
-# Copiar build Angular a Nginx
-COPY --from=build /app/dist/nature-api/browser /usr/share/nginx/html
+# Copiar build Angular (Angular 17+)
+COPY --from=build /nature-api/dist/browser /usr/share/nginx/html
 
 # Copiar configuración de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf

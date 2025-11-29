@@ -26,7 +26,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -48,7 +49,10 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
@@ -58,6 +62,7 @@
           },
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -70,9 +75,11 @@
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {
@@ -85,7 +92,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
