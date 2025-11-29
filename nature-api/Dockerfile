@@ -25,7 +25,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copiar archivos generados por Angular
-COPY --from=build /app/dist/nature-api/browser /usr/share/nginx/html
+COPY --from=build /nature/api/dist/nature/browser /usr/share/nginx/html
 
 # Copiar configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
